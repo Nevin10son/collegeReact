@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from './NavBar'
+import axios from 'axios'
 
 const AddStudent = () => {
   const [datas,setdata]=useState(
@@ -20,6 +21,19 @@ const AddStudent = () => {
   }
   const readValues = () =>{
     console.log(datas)
+    axios.post("https://courseapplogix.onrender.com/addstudents",datas).then(
+      (response)=>{
+        console.log(response.data);
+        if (response.data.status=="success")
+           {
+            alert("Successfully added");
+          
+        } else {
+          alert("Something's wrong");
+          
+        }
+      }
+    ).catch().finally()
   }
   return (
     <div>
